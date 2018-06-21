@@ -115,8 +115,6 @@ public class QueryUtils {
                 String type = jsonAtPosition.getString("sectionName");
                 String url = jsonAtPosition.getString("webUrl");
 
-                //Log.e(TAG, "Title: " + title + ": SectionName: " + type);
-
                 News _NEWS = new News(title, type, url);
                 Log.e(TAG, title + type + url);
                 news.add(_NEWS);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -27,8 +28,9 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listView = (ListView) findViewById(R.id.list);
-        adapter = new NewsAdapter(this, new ArrayList<News>());
+        ListView listView = (ListView) findViewById(R.id.listView);
+        List<News> newsList = new ArrayList<>();
+        adapter = new NewsAdapter(this, newsList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
         android.app.LoaderManager loaderManager = getLoaderManager();
         loaderManager.initLoader(NEWS_LOADER_ID, null, this);
+
+        Log.e(TAG, News.getTitle() + News.getType() + News.getUrl());
     }
 
     @Override
