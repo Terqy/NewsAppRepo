@@ -28,7 +28,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         View listView = convertView;
         if(listView == null) {
             listView = LayoutInflater.from(getContext()).
@@ -37,9 +36,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
         News currentNews = newsList.get(position);
 
         TextView title = (TextView) listView.findViewById(R.id.title);
-        TextView publisher = (TextView) listView.findViewById(R.id.type);
-
         title.setText(currentNews.getTitle());
+
+        TextView publisher = (TextView) listView.findViewById(R.id.type);
         publisher.setText(currentNews.getType());
 
         return listView;
