@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
         ListView listView = (ListView) findViewById(R.id.listView);
         newsList = new ArrayList<>();
-        adapter = new NewsAdapter(this, new ArrayList<News>());
+        adapter = new NewsAdapter(this, newsList);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
