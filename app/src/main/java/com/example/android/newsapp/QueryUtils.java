@@ -102,7 +102,7 @@ public class QueryUtils {
             return null;
         }
 
-        List<News> news = new ArrayList<>();
+       List<News> news = new ArrayList<>();
 
         try {
             JSONObject baseJson = new JSONObject(newsJSON);
@@ -115,9 +115,13 @@ public class QueryUtils {
                 String type = jsonAtPosition.getString("sectionName");
                 String url = jsonAtPosition.getString("webUrl");
 
-                News _NEWS = new News(title, type, url);
+                News.setTitle(title.toString());
+                News.setTitle(type.toString());
+                News.setUrl(url.toString());
+
+                News NEWS = new News(title, type, url);
                 Log.e(TAG, title + type + url);
-                news.add(_NEWS);
+                news.add(NEWS);
             }
         } catch (JSONException e) {
             Log.e(TAG, "Trouble fetching jsonResponse");

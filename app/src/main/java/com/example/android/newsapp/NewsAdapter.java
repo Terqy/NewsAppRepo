@@ -18,9 +18,9 @@ import java.util.List;
 public class NewsAdapter extends ArrayAdapter<News> {
 
     private Context mContext;
-    private List<News> newsList = new ArrayList<>();
+    private List<News> newsList;
 
-    public NewsAdapter(Activity context, List<News> news) {
+    public NewsAdapter(Context context, ArrayList<News> news) {
         super(context, 0, news);
         mContext = context;
         newsList = news;
@@ -28,19 +28,21 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View listView = convertView;
-        if(listView == null) {
-            listView = LayoutInflater.from(getContext()).
-                    inflate(R.layout.list, parent, false);
+        View listItem = convertView;
+        if(listItem == null) {
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.list, parent, false);
         }
         News currentNews = newsList.get(position);
 
-        TextView title = (TextView) listView.findViewById(R.id.title);
-        title.setText(currentNews.getTitle());
+        String TITLE = News.getTitle();
+        String TYPE = News.getType();
 
-        TextView publisher = (TextView) listView.findViewById(R.id.type);
-        publisher.setText(currentNews.getType());
+        TextView title = (TextView) listItem.findViewById(R.id.title);
+        title.setText(TITLE);
 
-        return listView;
+        TextView type = (TextView) listItem.findViewById(R.id.type);
+        type.setText(TYPE);
+
+        return listItem;
     }
 }
