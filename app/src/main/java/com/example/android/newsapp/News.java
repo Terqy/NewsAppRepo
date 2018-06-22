@@ -21,16 +21,4 @@ public class News {
     public static String getUrl() {
         return mUrl;
     }
-
-    public static void setTitle(String title) {
-        mTitle = title;
-    }
-
-    public static void setType(String type) {
-        mType = type;
-    }
-
-    public static void setUrl(String url) {
-        mUrl = url;
-    }
 }

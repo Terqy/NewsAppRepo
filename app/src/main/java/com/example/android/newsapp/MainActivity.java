@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     public String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?api-key=13011c7a-c539-46f5-ae32-be5f28f60425";
     private static final int NEWS_LOADER_ID = 1;
     private ArrayList<News> newsList;
+    private ListView listView;
 
     NewsAdapter adapter;
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
         newsList = new ArrayList<>();
         adapter = new NewsAdapter(this, newsList);
         listView.setAdapter(adapter);
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     @Override
     public void onLoaderReset(android.content.Loader<List<News>> loader) {
-
         adapter.clear();
     }
 }
