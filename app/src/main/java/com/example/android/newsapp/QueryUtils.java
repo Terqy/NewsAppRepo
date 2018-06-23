@@ -1,6 +1,5 @@
 package com.example.android.newsapp;
 
-import android.app.usage.UsageEvents;
 import android.text.TextUtils;
 import android.util.Log;
 
