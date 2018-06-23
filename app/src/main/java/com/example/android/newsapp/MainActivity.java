@@ -1,6 +1,10 @@
 package com.example.android.newsapp;
 
+import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     private static final int NEWS_LOADER_ID = 1;
     private ArrayList<News> newsList;
     private ListView listView;
+    private TextView emptyTextView;
+    private View loadingIndicator;
 
     NewsAdapter adapter;
 
@@ -30,10 +36,15 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        emptyTextView = (TextView) findViewById(R.id.emptyView);
+        loadingIndicator = (View) findViewById(R.id.loading_indicator);
+
         listView = (ListView) findViewById(R.id.listView);
         newsList = new ArrayList<>();
+
         adapter = new NewsAdapter(this, newsList);
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -44,8 +55,17 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
             }
         });
 
-        android.app.LoaderManager loaderManager = getLoaderManager();
-        loaderManager.initLoader(NEWS_LOADER_ID, null, this);
+        ConnectivityManager conManager =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = conManager.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()) {
+            LoaderManager loaderManager = getLoaderManager();
+            loaderManager.initLoader(NEWS_LOADER_ID, null, this);
+        } else {
+            loadingIndicator.setVisibility(View.GONE);
+
+            emptyTextView.setText(R.string.emptyView);
+        }
     }
 
     @Override
@@ -59,14 +79,22 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     @Override
     public void onLoadFinished(android.content.Loader<List<News>> loader, List<News> news) {
-        adapter.clear();
+        loadingIndicator.setVisibility(View.GONE);
+
         if(news != null && !news.isEmpty()) {
-            adapter.addAll(news);
+            updateUi(news);
+        } else {
+            emptyTextView.setText(R.string.emptyView);
         }
     }
 
     @Override
     public void onLoaderReset(android.content.Loader<List<News>> loader) {
         adapter.clear();
+    }
+
+    private void updateUi(List<News> news) {
+        adapter.clear();
+        adapter.addAll(news);
     }
 }

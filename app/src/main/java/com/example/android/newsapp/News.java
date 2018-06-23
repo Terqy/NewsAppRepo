@@ -2,23 +2,23 @@ package com.example.android.newsapp;
 
 public class News {
 
-    private static String mTitle, mType, mUrl;
+    private String mTitle, mCategory, mUrl;
 
-    public News(String title, String type, String url) {
+    public News(String title, String category, String url) {
         mTitle = title;
-        mType = type;
+        mCategory = category;
         mUrl = url;
     }
 
-    public static String getTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    public static String getType() {
-        return mType;
+    public String getCategory() {
+        return mCategory;
     }
 
-    public static String getUrl() {
+    public String getUrl() {
         return mUrl;
     }
 }

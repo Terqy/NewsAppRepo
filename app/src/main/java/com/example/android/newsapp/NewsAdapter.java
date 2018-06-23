@@ -31,13 +31,13 @@ public class NewsAdapter extends ArrayAdapter<News> {
         News currentNews = newsList.get(position);
 
         String TITLE = currentNews.getTitle();
-        String TYPE = currentNews.getType();
+        String CATEGORY = currentNews.getCategory();
 
         TextView title = (TextView) listItem.findViewById(R.id.title);
         title.setText(TITLE);
 
         TextView type = (TextView) listItem.findViewById(R.id.type);
-        type.setText(TYPE);
+        type.setText(CATEGORY);
 
         return listItem;
     }

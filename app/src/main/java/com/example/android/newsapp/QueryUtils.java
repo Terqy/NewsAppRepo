@@ -112,11 +112,11 @@ public class QueryUtils {
             for(int i = 0; i < newsArray.length(); i++) {
                 JSONObject jsonAtPosition = newsArray.getJSONObject(i);
                 String title = jsonAtPosition.getString("webTitle");
-                String type = jsonAtPosition.getString("sectionName");
+                String category = jsonAtPosition.getString("sectionName");
                 String url = jsonAtPosition.getString("webUrl");
 
-                News NEWS = new News(title, type, url);
-                Log.e(TAG, title + type + url);
+                News NEWS = new News(title, category, url);
+                Log.e(TAG, title + category + url);
                 news.add(NEWS);
             }
         } catch (JSONException e) {
