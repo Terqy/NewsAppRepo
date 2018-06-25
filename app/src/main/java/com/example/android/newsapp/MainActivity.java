@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
     private final String TAG = MainActivity.class.getSimpleName();
 
-    public String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?api-key=13011c7a-c539-46f5-ae32-be5f28f60425";
+    public String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=13011c7a-c539-46f5-ae32-be5f28f60425";
     private static final int NEWS_LOADER_ID = 1;
     private ArrayList<News> newsList;
     private ListView listView;

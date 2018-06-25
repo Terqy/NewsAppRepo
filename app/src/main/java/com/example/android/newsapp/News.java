@@ -2,12 +2,13 @@ package com.example.android.newsapp;
 
 public class News {
 
-    private String mTitle, mCategory, mUrl;
+    private String mTitle, mCategory, mUrl, mAuthor;
 
-    public News(String title, String category, String url) {
+    public News(String title, String category, String url, String author) {
         mTitle = title;
         mCategory = category;
         mUrl = url;
+        mAuthor = author;
     }
 
     public String getTitle() {
@@ -20,5 +21,9 @@ public class News {
 
     public String getUrl() {
         return mUrl;
+    }
+
+    public String getAuthor() {
+        return mAuthor;
     }
 }

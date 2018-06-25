@@ -30,14 +30,18 @@ public class NewsAdapter extends ArrayAdapter<News> {
         }
         News currentNews = newsList.get(position);
 
-        String TITLE = currentNews.getTitle();
-        String CATEGORY = currentNews.getCategory();
+        String title = currentNews.getTitle();
+        String category = currentNews.getCategory();
+        String author = currentNews.getAuthor();
 
-        TextView title = (TextView) listItem.findViewById(R.id.title);
-        title.setText(TITLE);
+        TextView textViewTitle = (TextView) listItem.findViewById(R.id.title);
+        textViewTitle.setText(title);
 
-        TextView type = (TextView) listItem.findViewById(R.id.type);
-        type.setText(CATEGORY);
+        TextView textViewCategory = (TextView) listItem.findViewById(R.id.type);
+        textViewCategory.setText("Category: " + category);
+
+        TextView textViewAuthor = (TextView) listItem.findViewById(R.id.author);
+        textViewAuthor.setText("Author: " + author);
 
         return listItem;
     }

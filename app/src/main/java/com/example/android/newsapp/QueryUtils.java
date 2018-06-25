@@ -114,9 +114,14 @@ public class QueryUtils {
                 String category = jsonAtPosition.getString("sectionName");
                 String url = jsonAtPosition.getString("webUrl");
 
-                News NEWS = new News(title, category, url);
-                Log.e(TAG, title + category + url);
-                news.add(NEWS);
+                JSONArray tagsArray = jsonAtPosition.getJSONArray("tags");
+                for(int x = 0; x < tagsArray.length(); x++) {
+                    JSONObject tagsObject = tagsArray.getJSONObject(x);
+                    String author = tagsObject.getString("webTitle");
+                    News NEWS = new News(title, category, url, author);
+                    Log.e(TAG, author);
+                    news.add(NEWS);
+                }
             }
         } catch (JSONException e) {
             Log.e(TAG, "Trouble fetching jsonResponse");
