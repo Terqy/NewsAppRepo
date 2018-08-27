@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="textSize">15sp</dimen>
+    <dimen name="padding">16dp</dimen>
+    <dimen name="listHeight">80dp</dimen>
+</resources>

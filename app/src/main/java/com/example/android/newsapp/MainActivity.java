@@ -3,11 +3,16 @@ package com.example.android.newsapp;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,12 +20,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<List<News>> {
+public class MainActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<List<News>>,
+        SharedPreferences.OnSharedPreferenceChangeListener{
 
     private final String TAG = MainActivity.class.getSimpleName();
 
-    public String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=13011c7a-c539-46f5-ae32-be5f28f60425";
+    public String NEWS_REQUEST_URL = "https://content.guardianapis.com/search";
     private static final int NEWS_LOADER_ID = 1;
     private ArrayList<News> newsList;
     private ListView listView;
@@ -42,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
         adapter = new NewsAdapter(this, newsList);
         listView.setAdapter(adapter);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,10 +77,41 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_settings:
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public android.content.Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String pageSize = sharedPref.getString(getString(R.string.settings_page_size_key), getString(R.string.settings_page_size_default));
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        Set<String> sectionId = sharedPref.getStringSet(getString(R.string.settings_section_key), null);
+
+        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("pageSize", String.valueOf(pageSize));
+        uriBuilder.appendQueryParameter("sectionId", String.valueOf(sectionId));
+        uriBuilder.appendQueryParameter("sectionName", "sectionName");
+        uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("q", "sport");
+        uriBuilder.appendQueryParameter("api-key", "13011c7a-c539-46f5-ae32-be5f28f60425");
 
         return new NewsLoader(this, uriBuilder.toString());
     }
@@ -94,5 +135,10 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     private void updateUi(List<News> news) {
         adapter.clear();
         adapter.addAll(news);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+
     }
 }

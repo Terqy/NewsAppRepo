@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title">
+
+    <ListPreference
+        android:defaultValue="@string/sort_order_default"
+        android:entryValues="@array/entries"
+        android:inputType="text"
+        android:key="order_by"
+        android:selectAllOnFocus="true"
+        android:title="Category" />
+</PreferenceScreen>
