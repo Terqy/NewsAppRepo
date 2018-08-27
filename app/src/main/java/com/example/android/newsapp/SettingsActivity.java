@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
     }
 
-    public static class newPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
+    public static class newsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
         @Override
         public void onCreate(Bundle savedInstanceSate) {
             super.onCreate(savedInstanceSate);
@@ -27,6 +27,9 @@ public class SettingsActivity extends AppCompatActivity {
 
             Preference pageSize = findPreference(getString(R.string.settings_page_size_key));
             bindPrefereneceSummaryToValue(pageSize);
+
+            Preference sectionId = findPreference(getString(R.string.settings_section_key));
+            bindPrefereneceSummaryToValue(sectionId);
         }
 
         private void bindPrefereneceSummaryToValue(Preference preference) {
