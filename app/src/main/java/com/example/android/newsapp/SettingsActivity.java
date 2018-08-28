@@ -1,5 +1,7 @@
 package com.example.android.newsapp;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -7,8 +9,9 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
 
-import java.util.List;
+
 import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -20,16 +23,15 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class newsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
+
         @Override
         public void onCreate(Bundle savedInstanceSate) {
             super.onCreate(savedInstanceSate);
             addPreferencesFromResource(R.xml.settings_main);
 
-            Preference pageSize = findPreference(getString(R.string.settings_page_size_key));
-            bindPrefereneceSummaryToValue(pageSize);
+            Preference sortOrder = findPreference(getString(R.string.sort_order_key));
+            bindPrefereneceSummaryToValue(sortOrder);
 
-            Preference sectionId = findPreference(getString(R.string.settings_section_key));
-            bindPrefereneceSummaryToValue(sectionId);
         }
 
         private void bindPrefereneceSummaryToValue(Preference preference) {
