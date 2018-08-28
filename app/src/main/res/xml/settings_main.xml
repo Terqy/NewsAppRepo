@@ -2,10 +2,12 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/settings_title">
-    <ListPreference
-        android:key="@string/sort_order_by_key"
+
+    <EditTextPreference
         android:defaultValue="@string/sort_order_by_default"
-        android:entryValues="@array/entries"
-        android:entries="@array/entries"
-        android:title="Category" />
+        android:inputType="text"
+        android:key="@string/sort_order_by_key"
+        android:selectAllOnFocus="true"
+        android:title="Sort"/>
+    
 </PreferenceScreen>

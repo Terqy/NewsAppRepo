@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="entries">
+    <string-array name="settings_order_by_time">
         <item>@string/sort_order_by_oldest</item>
         <item>@string/sort_order_by_default</item>
     </string-array>
