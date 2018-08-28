@@ -97,19 +97,18 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     public android.content.Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String pageSize = sharedPref.getString(getString(R.string.settings_page_size_key), getString(R.string.settings_page_size_default));
+        String sortOrder = sharedPref.getString(getString(R.string.sort_order_key), getString(R.string.sort_order_default));
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        Set<String> sectionId = sharedPref.getStringSet(getString(R.string.settings_section_key), null);
 
         uriBuilder.appendQueryParameter("format", "json");
-        uriBuilder.appendQueryParameter("pageSize", String.valueOf(pageSize));
-        uriBuilder.appendQueryParameter("sectionId", String.valueOf(sectionId));
+        uriBuilder.appendQueryParameter("pageSize", "10");
         uriBuilder.appendQueryParameter("sectionName", "sectionName");
         uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("orderBy", String.valueOf(sortOrder));
         uriBuilder.appendQueryParameter("q", "sport");
         uriBuilder.appendQueryParameter("api-key", "13011c7a-c539-46f5-ae32-be5f28f60425");
 
