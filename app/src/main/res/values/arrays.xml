@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="entries">
-        <item>@string/sort_order_newest</item>
         <item>@string/sort_order_oldest</item>
         <item>@string/sort_order_default</item>
     </string-array>
