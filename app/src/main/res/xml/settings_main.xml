@@ -9,5 +9,5 @@
         android:key="@string/sort_order_by_key"
         android:selectAllOnFocus="true"
         android:title="Sort"/>
-    
+
 </PreferenceScreen>
