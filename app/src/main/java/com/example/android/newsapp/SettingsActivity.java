@@ -1,7 +1,5 @@
 package com.example.android.newsapp;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -9,10 +7,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-
-
-import java.util.Set;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -29,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceSate);
             addPreferencesFromResource(R.xml.settings_main);
 
-            Preference sortOrder = findPreference(getString(R.string.sort_order_key));
+            Preference sortOrder = findPreference(getString(R.string.sort_order_by_key));
             bindPrefereneceSummaryToValue(sortOrder);
 
         }
@@ -38,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
             preference.setOnPreferenceChangeListener(this);
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
             if(preference instanceof ListPreference) {
-                Set<String> values = sharedPrefs.getStringSet(preference.getKey(), null);
+                String values = sharedPrefs.getString(preference.getKey(), null);
                 onPreferenceChange(preference, values);
             } else {
                 String preferenceString = sharedPrefs.getString(preference.getKey(), "");

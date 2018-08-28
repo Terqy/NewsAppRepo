@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/settings_title">
     <ListPreference
-        android:defaultValue="@string/sort_order_default"
+        android:key="@string/sort_order_by_key"
+        android:defaultValue="@string/sort_order_by_default"
         android:entryValues="@array/entries"
-        android:inputType="text"
-        android:key="order_by"
-        android:selectAllOnFocus="true"
+        android:entries="@array/entries"
         android:title="Category" />
 </PreferenceScreen>

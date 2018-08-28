@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
     public android.content.Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String sortOrder = sharedPref.getString(getString(R.string.sort_order_key), getString(R.string.sort_order_default));
+        String sortOrder = sharedPref.getString(getString(R.string.sort_order_by_key), getString(R.string.sort_order_by_default));
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
