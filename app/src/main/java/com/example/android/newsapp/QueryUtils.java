@@ -113,12 +113,13 @@ public class QueryUtils {
                 String title = jsonAtPosition.getString("webTitle");
                 String category = jsonAtPosition.getString("sectionName");
                 String url = jsonAtPosition.getString("webUrl");
+                String time = jsonAtPosition.getString("webPublicationDate");
 
                 JSONArray tagsArray = jsonAtPosition.getJSONArray("tags");
                 for(int x = 0; x < tagsArray.length(); x++) {
                     JSONObject tagsObject = tagsArray.getJSONObject(x);
                     String author = tagsObject.getString("webTitle");
-                    News NEWS = new News(title, category, url, author);
+                    News NEWS = new News(title, category, url, author, time);
                     Log.e(TAG, author);
                     news.add(NEWS);
                 }

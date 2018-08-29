@@ -7,4 +7,8 @@
     <string name="sort_order_by_key">order_by</string>
     <string name="sort_order_by_oldest">Oldest</string>
     <string name="sort_order_by_default">Default</string>
+    <string name="category_key">category_prefs</string>
+    <string name="category_default_value">world</string>
+    <string name="category_sport_value">sport</string>
+    <string name="category_politics_value">politics</string>
 </resources>

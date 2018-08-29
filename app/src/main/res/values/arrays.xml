@@ -4,4 +4,10 @@
         <item>@string/sort_order_by_oldest</item>
         <item>@string/sort_order_by_default</item>
     </string-array>
+
+    <string-array name="settings_category">
+        <item>@string/category_default_value</item>
+        <item>@string/category_politics_value</item>
+        <item>@string/category_sport_value</item>
+    </string-array>
 </resources>

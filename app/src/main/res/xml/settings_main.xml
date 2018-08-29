@@ -10,4 +10,11 @@
         android:selectAllOnFocus="true"
         android:title="Sort"/>
 
+    <ListPreference
+        android:defaultValue="world"
+        android:title="Category"
+        android:key="@string/category_key"
+        android:entries="@array/settings_category"
+        android:entryValues="@array/settings_category"/>
+
 </PreferenceScreen>

@@ -26,6 +26,8 @@ public class SettingsActivity extends AppCompatActivity {
             Preference sortOrder = findPreference(getString(R.string.sort_order_by_key));
             bindPrefereneceSummaryToValue(sortOrder);
 
+            Preference sectionId = findPreference(getString(R.string.category_key));
+            bindPrefereneceSummaryToValue(sectionId);
         }
 
         private void bindPrefereneceSummaryToValue(Preference preference) {

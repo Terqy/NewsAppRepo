@@ -33,6 +33,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         String title = currentNews.getTitle();
         String category = currentNews.getCategory();
         String author = currentNews.getAuthor();
+        String time = currentNews.getTime();
 
         TextView textViewTitle = (TextView) listItem.findViewById(R.id.title);
         textViewTitle.setText(title);
@@ -42,6 +43,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         TextView textViewAuthor = (TextView) listItem.findViewById(R.id.author);
         textViewAuthor.setText("Author: " + author);
+
+        TextView textViewTime = (TextView) listItem.findViewById(R.id.time);
+        textViewTime.setText("Time: " + time);
 
         return listItem;
     }
