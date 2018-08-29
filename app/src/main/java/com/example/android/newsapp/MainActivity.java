@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String sortOrder = sharedPref.getString(getString(R.string.sort_order_by_key), getString(R.string.sort_order_by_default));
 
-        String sectionId = sharedPref.getString(getString(R.string.category_key), null);
+        String category= sharedPref.getString(getString(R.string.category_key), null);
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
@@ -105,11 +105,11 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
 
         uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("pageSize", "10");
-        uriBuilder.appendQueryParameter("sectionId", String.valueOf(sectionId));
         uriBuilder.appendQueryParameter("sectionName", "sectionName");
         uriBuilder.appendQueryParameter("show-fields", "wordcount,headline,bodyText");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("orderBy", String.valueOf(sortOrder));
+        uriBuilder.appendQueryParameter("q", String.valueOf(category));
         uriBuilder.appendQueryParameter("api-key", "13011c7a-c539-46f5-ae32-be5f28f60425");
 
         return new NewsLoader(this, uriBuilder.toString());
